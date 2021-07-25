@@ -42,12 +42,12 @@ export default {
     .content {
         flex: 1;
         overflow-y: auto;
-        min-width: 700px;
+        min-width: 1400px;
         margin-bottom: 50px;
         .router-view{
         
           margin: auto;
-          max-width: 1200px;
+          max-width: 1600px;
         }
       }
     }
