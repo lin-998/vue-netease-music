@@ -1,5 +1,4 @@
-# 主题展示
-![image](https://user-images.githubusercontent.com/83082448/126097496-66ebe62d-b038-4586-a4f4-35ea22c77efc.png)
+
 ### 技术栈
 - Vue2：采用最新Vue2的语法
 - Vuex：管理公共组件状态量
@@ -10,15 +9,27 @@
 - Webpack：自动化构建工具，主要配置vue-cli脚手架提供。
 - ES6：采用ES6语法。
 - CSS3：CSS3动画及样式。
+### 主要功能
+- 网易云音乐官方热门榜单的banner轮播图
+- 个性推荐模块, 歌单推荐模块, 歌单排行榜
+- 歌手推荐信息, 独家放送模块 ,最新音乐模块
+- 歌单播放, 单曲播放, 视频播放页面
+- 歌词滚动播放, 歌曲详情页, 歌曲视频评论
+# 主题展示
+![image](https://user-images.githubusercontent.com/83082448/126097496-66ebe62d-b038-4586-a4f4-35ea22c77efc.png)
+### 推荐歌单
+![image](https://user-images.githubusercontent.com/83082448/126891761-ae40967c-1b34-4232-aa4c-dae074813b1a.png)
+### mv
+![image](https://user-images.githubusercontent.com/83082448/126891776-b00f36d5-7e03-415b-ac93-11e720fe6478.png)
+### 搜索功能
+![image](https://user-images.githubusercontent.com/83082448/126891894-6e3e48e0-ece4-4f05-809f-e91f81a8b20e.png)
 
-# mymusic
-
-## Project setup
+## 项目安装
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### 项目启动
 ```
 npm run serve
 ```
@@ -28,8 +39,6 @@ npm run serve
 npm build
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-
 ### 接口文档
 #### https://github.com/Binaryify/NeteaseCloudMusicApi.git
+
