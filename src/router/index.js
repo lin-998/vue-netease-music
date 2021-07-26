@@ -72,6 +72,7 @@ const routes = [
     component: MusicPlayDetail
   },
   {
+    
     path: '/new-songs',
     name:'new-songs',
     component: NewSongs
