@@ -61,7 +61,7 @@ width="180"
     </el-table-column>
   </el-table>
      </div>
-      <div class="comments" v-show=" activeTab===1">
+      <div class="comments" v-show=" activeTab===1"> 
           <Comments :id="id"  type="playlist" />
           </div>
     </div>
