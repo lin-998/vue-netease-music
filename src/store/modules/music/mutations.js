@@ -22,5 +22,8 @@ export default{
       },
       setPlaylist(state,song){
         state.playlist=song
+      },
+      setLoginShow(state,show){
+        state.isLoginShow=show
       }
 }
