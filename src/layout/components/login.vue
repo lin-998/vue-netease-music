@@ -1,4 +1,21 @@
 <template>
+<div class="wrap">
+    <div class="login_header"> <span>登录</span>
+<i class="el-icon-close"></i>
+</div>
+<div class="scan_main">
+    <div class="left"></div>
+<div class="right">
+    <div class="title">扫码登录</div>
+    <div class="qr"></div>
+    <span>使用网易云app登录</span>
+</div>
+</div>
+<div class="btn_other" @click="otherLogin=true"><span>选择其他登录方式</span></div>
+<el-dialog
+:visible.sync="otherLogin"
+width="50%"
+>
   <div >
 <div class="login_header"> <span>登录</span>
 <i class="el-icon-close"></i>
@@ -23,9 +40,10 @@
         <input type="checkbox" name="" id="">
     <span>同意《服务条框》</span>
     </div>
-    <div login-qrcode></div>
+    <div class="login-qrcode"></div>
 </div>
-
+</div>
+</el-dialog>
 <el-dialog
   title="提示"
   :visible.sync="phoneLogin"
@@ -33,7 +51,7 @@
 
   >
  <div>
-     <div class="phoneLoginTitle"><i class="el-icon-close"></i>
+     <div class="phoneLoginTitle"><span>手机号登录</span><i class="el-icon-close"></i>
      </div>
  <div class="phone_main">
 <el-form :model="ruleForm" :rules="rules" ref="ruleForm" >
@@ -49,7 +67,7 @@
 <span>密码登录</span>
  <el-checkbox v-model="checked">自动登录</el-checkbox>
  </div>
- <div class="btn_login" @click.native="submit"><span>登录</span></div>
+ <div class="btn_login" @click="submit"><span>登录</span></div>
  </div>
  <div class="phone_footer">
      <span>其他登录方式</span>
@@ -69,6 +87,7 @@ export default {
  data (){
      return{
          phoneLogin:false,
+         otherLogin:false,
           ruleForm: {
           phone: '',
           checkCode: '',
@@ -105,7 +124,7 @@ getCode(){
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" scoped >
 .login_header {
 background-color: #2d2d2d;
 height: 40px;
@@ -123,8 +142,10 @@ padding: 0 10px 0 10px;
       justify-content: center;
       flex-direction: column;
       flex: 1;
-      border-right: 1px solid #2d2d2d;
+      border-right: 1px solid #ccc;
       padding: 5px 5px 5px 5px;
+      width: 250px;
+      height: 250px;
     img {
 width: 150px;
 height: 150px;
@@ -135,32 +156,43 @@ display: flex;
       align-items: center;
       justify-content: center;
       height: 30px;
-     width: 100%; 
+     width: 80%; 
       background-color: #2979c7;
     }
 
     .btn-register {
+        margin-top: 10px;
 display: flex;
       align-items: center;
       justify-content: center;
       background-color: #f7f7f7;
       height: 30px;
-      width: 100%;
+      width: 80%;
     }
   }
 
   .right {
+      flex: 1;
    ul{
+       margin-left: 80px;
         display: flex;
-      align-items: center;
       justify-content: center;
       flex-direction: column;
       padding: 10px 20px 0 20px;
        li{
             display: flex;
-      align-items: center;
-      justify-content: center; 
+            align-items: center;
+            justify-content: center;
       margin-top: 30px;
+      img{
+               width: 30px;
+               height: 30px;
+               border-radius: 15px;
+           }
+          span{
+              margin-left: 20px;
+              flex: 1;
+          } 
        }
    }
 }
@@ -187,6 +219,8 @@ display: flex;
 align-items: center;
 justify-content: space-between;
 padding: 0 10px 0 10px;
+margin-bottom: 20px;
+color: #ffffff;
 }
 .phone_main{
     display: flex;
@@ -194,14 +228,18 @@ padding: 0 10px 0 10px;
     justify-content: center;
     flex-direction: column;
     padding: 0 100px 0 100px;
-    .identify_code{
+    .el-form-item /deep/ .el-form-item__content{
 display: flex;
     }
     .to_login{
 display: flex;
 margin-bottom: 20px;
+span{
+   display: inline-block;
+   width: 200px;
+}
 .el-checkbox{
-   flex: 1;
+  flex: 1;
 }
     }
     .btn_login{
@@ -218,5 +256,61 @@ margin-bottom: 20px;
 .phone_footer{
     display: flex;
     justify-content: space-between;
+    background-color: #f7f7f7;
+}
+.wrap{
+    .login_header {
+  span {
+
+  }
+
+  i.el-icon-close {
+
+  }
+}
+
+.scan_main {
+    margin-top: 20px;
+    display: flex;
+  .left {
+width: 250px;
+height: 250px;
+  }
+
+  .right {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    .title {
+
+    }
+
+    .qr {
+        width: 200px;
+        height: 200px;
+background-color: pink;
+    }
+
+    span {
+
+    }
+  }
+}
+
+.btn_other {
+    display: flex;
+      align-items: center;
+      justify-content: center;
+  span {
+       width:130px ;
+      height: 30px;
+      border: 1px solid #ccc;
+border-radius:15px;
+line-height: 30px;
+text-align: center;
+  }
+}
 }
 </style>
