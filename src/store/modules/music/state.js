@@ -19,5 +19,6 @@ export default {
    // 播放历史数据
    playHistory: storage.get(PLAY_HISTORY_KEY, []),
    // 菜单显示
-   
+   isLoginShow:false,
+   //登录框显示
 }

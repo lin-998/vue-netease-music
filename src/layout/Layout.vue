@@ -14,6 +14,7 @@
         <router-view  class="router-view"/>
       </div>
     </div>
+
   </div>
 </template>
 <script>
@@ -23,6 +24,13 @@ export default {
     components:{
         LayoutAside,
         LayoutHeader
+    },
+    data(){
+      return{
+      }
+    },
+    create(){
+      console.log(this.$store.isloginShow);
     }
 }
 </script>

@@ -32,31 +32,52 @@
       <b-avatar
           size="35px"
           class="avatar"
-
+@click.native="handle"
          />
           <Theme />
 
 
         </div>
+        <el-dialog
+  :visible.sync="isLoginShow"
+  width="50%"
+ 
+  >
+  <login />
+</el-dialog>
     </div>
+    
 </template>
 <script>
 import Search from '../components/search'
 import Theme from '../components/theme.vue'
+import Login from "../layout/components/login.vue";
+import {
+  mapState,
+ mapMutations,
+} from "@/store/helper/music"
 export default {
   components:{
 Search,
-Theme
+Theme,
+Login
   },
     name:"LayoutHeader",
     data(){
         return{
-         
             isShow:false,
             isSearch:false,
         }
     },
+    create(){
+    },
     methods: {
+      handleClose(){
+
+      },
+      handle(){
+this.setLoginShow(true);
+      },
          handleMouseEnter() {
       this.isShow = true;
     },
@@ -66,8 +87,18 @@ Theme
   
 go(index){
       this.$router.go(index)
-    }
     },
+    ...mapMutations([
+     
+     "setLoginShow",
+    ]),
+    
+    },
+    computed:{
+... mapState(
+["isLoginShow"]
+)
+    }
     
 }
 </script>
