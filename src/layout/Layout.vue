@@ -14,27 +14,56 @@
         <router-view  class="router-view"/>
       </div>
     </div>
-
+ <!-- 登录组件 -->
+   <div class="contain-content" >
+      <component   :is="componentView"  class="component-container-view"  @passName="onHandle">
+        <slot />
+      </component>
+    </div>
   </div>
 </template>
 <script>
 import  LayoutAside from "./Aside";
 import  LayoutHeader from "./Header";
+import  loginRegisterNext from "./components/loginRegister2.vue";
+import  loginRegister from "./components/loginRegister.vue";
+import  loginPhone from "./components/loginPhone.vue";
+import  loginHome from "./components/loginHome.vue";
 export default {
     components:{
         LayoutAside,
-        LayoutHeader
-    },
+        LayoutHeader,
+        loginRegisterNext,
+        loginHome,
+loginPhone,
+loginRegister,
+},
+
     data(){
       return{
+        componentView:'loginHome',
       }
     },
+    methods:{
+onHandle(param){
+  this.componentView=param;
+}
+    },
     create(){
-      console.log(this.$store.isloginShow);
     }
 }
 </script>
 <style lang="scss" scoped>
+
+ .contain-content{
+      position: fixed;
+       width: 500px;
+       height: 280px;
+       top: 50%;
+       left: 50%;
+       transform: translate(-50%,-50%);
+       background-color: #fff;
+       }
     .layout {
       width: 100%;
   height: 100%;
@@ -60,6 +89,6 @@ export default {
       }
     }
   }
-  
+
 
 </style>
