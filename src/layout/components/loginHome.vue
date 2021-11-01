@@ -24,7 +24,7 @@ data(){
 },
 methods:{
     handle(){
-        let name='loginRegisterNext'
+        let name='loginWay'
         this.$emit("passName",name)
     }
 }

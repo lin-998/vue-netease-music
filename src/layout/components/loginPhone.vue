@@ -5,10 +5,10 @@
  <div class="phone_main">
 <el-form :model="loginForm" :rules="rules" ref="Form" >
     <el-form-item>
-        <el-input v-model="phone" placeholder="请输入手机号"></el-input>
+        <el-input v-model="loginForm.phone" placeholder="请输入手机号"></el-input>
     </el-form-item>
      <el-form-item class="identify_code">
-        <el-input  v-model="checkCode" placeholder="请输入验证码"></el-input>
+        <el-input  v-model="loginForm.checkCode" placeholder="请输入验证码"></el-input>
         <el-button @click.native="getCode">获取验证码</el-button>
     </el-form-item>
 </el-form>
@@ -26,8 +26,74 @@
 </template>
 
 <script>
+import { Login } from "../../api/login";
 export default {
+ data (){
+    const validatePhone = (rule, value, callback) => {
+      if (value.length != 11) {
+        callback(new Error('请输入正确的手机号'))
+      } else {
+        callback()
+      }
+    }
+    const validateAuthcode = (rule, value, callback) => {
+      if (value.length < 4) {
+        callback(new Error('请输入正确验证码'))
+      } else {
+        callback()
+      }
+    }
+     return{
+       componentView:'',
+       checked:false,
+        loginForm: {
+          phone: '',
+          checkCode: '',
+        },
+        rules: {
+          phone: [
+            { required: true, validator: validatePhone, trigger: 'blur' }
+          ],
+           checkCode: [
+            { required: true, validator: validateAuthcode, trigger: 'blur' }
+          ],
+        }
+     }
+ },
+ methods:{
+     submitLogin(){
+         console.log(222);
+       this.$refs.Form.validate((valid) => {
+  if(valid){
+this.$store.dispatch('user/login',this.loginForm)
+.then(()=>{
+  //存储登录信息
+  this.setUserInfo()
+})
+.catch((error)=>{
+  console.log(error.msg);
+})
+  }else{
+    console.log('error submit!!')
+          return false
+  }
+  })  
+     },
+     setUserInfo(){
 
+},
+getCode(){
+    console.log(111);
+    let data={
+     phone:this.loginForm.phone
+    }
+    Login.getCheckCode(data).then(res=>{
+        console.log(res);
+        this.loginForm.checkCode=res.data
+    })
+},
+
+ }
 }
 </script>
 
@@ -71,6 +137,7 @@ color: #ffffff;
 width: 100%;
 height: 40px;
 margin-bottom: 20px;
+cursor: pointer;
     }
 }
 .phone_footer{

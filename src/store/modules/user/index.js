@@ -25,6 +25,7 @@ Login.checkVerify({phone:phone,captcha:checkCode}).then(res=>{
 //登录
 Login.phoneLogin({phone:phone,captcha:checkCode}).then(res=>{
     const{data}=response
+    commit('setLoginStaus',true)
     resolve(data)
 }).catch(error=>{
     reject(error)

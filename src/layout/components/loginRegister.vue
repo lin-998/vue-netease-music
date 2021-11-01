@@ -1,6 +1,6 @@
 <template>
   <div class="wrap">
-<div class="login_header"> <span>登录</span>
+<div class="login_header"> <span>注册</span>
 <i class="el-icon-close"></i>
 </div>
 <div class="phone_main">

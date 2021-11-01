@@ -10,7 +10,7 @@ export const Login=new (class{
         return request.post(this.getCheckCodeApi,data).then((res)=>res.data)
     }
     phoneLogin(data){
-        return request.post(this.phoneLoginApi,{params:data}).then((res)=>res.data)
+        return request.post(this.phoneLoginApi,data).then((res)=>res.data)
     }
 Login(data){
     return request.post(this.emailLoginApi,{params:data}).then((res)=>res.data)

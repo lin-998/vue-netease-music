@@ -29,6 +29,7 @@ import  loginRegisterNext from "./components/loginRegister2.vue";
 import  loginRegister from "./components/loginRegister.vue";
 import  loginPhone from "./components/loginPhone.vue";
 import  loginHome from "./components/loginHome.vue";
+import  loginWay from "./components/loginWay.vue";
 export default {
     components:{
         LayoutAside,
@@ -37,6 +38,7 @@ export default {
         loginHome,
 loginPhone,
 loginRegister,
+loginWay
 },
 
     data(){
