@@ -1,10 +1,5 @@
 <template>
 <div class="wrap">
-   <!-- <div class="contain-content">
-      <component   :is="componentView"  class="component-container-view">
-        <slot />
-      </component>
-    </div> -->
     <div class="login_header"> <span>登录</span>
 <i class="el-icon-close"></i>
 </div>
@@ -59,12 +54,12 @@ width="50%"
      <div class="phoneLoginTitle"><span>手机号登录</span><i class="el-icon-close"></i>
      </div>
  <div class="phone_main">
-<el-form :model="loginForm" :rules="rules" ref="Form" >
+<el-form :model="ruleForm" :rules="rules" ref="ruleForm" >
     <el-form-item>
-        <el-input v-model="phone" placeholder="请输入手机号"></el-input>
+        <el-input v-model=" phone" placeholder="请输入手机号"></el-input>
     </el-form-item>
      <el-form-item class="identify_code">
-        <el-input  v-model="checkCode" placeholder="请输入验证码"></el-input>
+        <el-input  v-model="  checkCode" placeholder="请输入验证码"></el-input>
         <el-button @click.native="getCode">获取验证码</el-button>
     </el-form-item>
 </el-form>
@@ -72,7 +67,7 @@ width="50%"
 <span>密码登录</span>
  <el-checkbox v-model="checked">自动登录</el-checkbox>
  </div>
- <div class="btn_login" @click="submitLogin"><span>登录</span></div>
+ <div class="btn_login" @click="submit"><span>登录</span></div>
  </div>
  <div class="phone_footer">
      <span>其他登录方式</span>
@@ -82,28 +77,7 @@ width="50%"
  
   
 </el-dialog>
-手机号注册
-<el-dialog
-  title="提示"
-  :visible.sync="phoneLogin"
-  width="50%"
-  >
-  <div class="login_header"> <span>登录</span>
-<i class="el-icon-close"></i>
-</div>
-<div class="phone_main">
-<el-form :model="loginForm" :rules="rules" ref="loginForm" >
-    <el-form-item>
-        <el-input v-model="phone" placeholder="请输入手机号"></el-input>
-    </el-form-item>
-     <el-form-item class="identify_code">
-        <el-input  v-model="checkCode" placeholder="请输入验证码"></el-input>
-        <el-button @click.native="getCode">获取验证码</el-button>
-    </el-form-item>
-</el-form>
- <div class="btn_login" @click="submit"><span>注册</span></div>
- </div>
-  </el-dialog>
+
   </div>
 </template>
 
@@ -111,34 +85,19 @@ width="50%"
 import { Login } from "../../api/login";
 export default {
  data (){
-    const validatePhone = (rule, value, callback) => {
-      if (value.length != 11) {
-        callback(new Error('请输入正确的手机号'))
-      } else {
-        callback()
-      }
-    }
-    const validateAuthcode = (rule, value, callback) => {
-      if (value.length < 4) {
-        callback(new Error('请输入正确验证码'))
-      } else {
-        callback()
-      }
-    }
      return{
-       componentView:'',
          phoneLogin:false,
          otherLogin:false,
-        loginForm: {
+          ruleForm: {
           phone: '',
           checkCode: '',
         },
         rules: {
           phone: [
-            { required: true, validator: validatePhone, trigger: 'blur' }
+            { required: true, message: '请输入手机号', trigger: 'blur' }
           ],
            checkCode: [
-            { required: true, validator: validateAuthcode, trigger: 'blur' }
+            { required: true, message: '请输入验证码', trigger: 'blur' }
           ],
         }
      }
@@ -147,34 +106,16 @@ export default {
 
  },
  methods:{
-submitLogin(){
-this.$refs.Form.validate((valid) => {
-  if(valid){
-this.$store.dispatch('user/login',this.loginForm)
-.then(()=>{
-  //存储登录信息
-  this.setUserInfo()
-})
-.catch((error)=>{
-  console.log(error.msg);
-})
-  }else{
-    console.log('error submit!!')
-          return false
-  }
-  })
-},
-setUserInfo(){
+submit(){
 
 },
 getCode(){
     console.log(111);
     let data={
-     phone:this.loginForm.phone
+       "phone":13046256071,
     }
     Login.getCheckCode(data).then(res=>{
         console.log(res);
-        this.loginForm.checkCode=res.data
     })
 }
  },

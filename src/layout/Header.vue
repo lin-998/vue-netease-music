@@ -35,8 +35,16 @@
 @click.native="handle"
          />
           <Theme />
+
+
         </div>
-       
+        <el-dialog
+  :visible.sync="isLoginShow"
+  width="50%"
+ 
+  >
+  <login />
+</el-dialog>
     </div>
     
 </template>
@@ -52,14 +60,13 @@ export default {
   components:{
 Search,
 Theme,
-Login,
+Login
   },
     name:"LayoutHeader",
     data(){
         return{
             isShow:false,
             isSearch:false,
-           
         }
     },
     create(){
@@ -82,6 +89,7 @@ go(index){
       this.$router.go(index)
     },
     ...mapMutations([
+     
      "setLoginShow",
     ]),
     
@@ -95,14 +103,12 @@ go(index){
 }
 </script>
 <style lang="less" scoped>
- 
    .header_wrap{
        display: flex;
        align-items: center;
        background-color: var(--header-bgcolor);
        height: 58px;
        width: 100%;
-     
    }
    
    .left{

@@ -40,7 +40,6 @@ loginPhone,
 loginRegister,
 loginWay
 },
-
     data(){
       return{
         componentView:'loginHome',
