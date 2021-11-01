@@ -7,7 +7,7 @@
 <div class="login_mian">
     <div class="left">
         <img src="" alt="">
-        <div class="btn-login" @click="phoneLogin=true">手机号登录</div>
+        <div class="btn-login" @click="handle">手机号登录</div>
 <div class="btn-register">注册</div>
     </div>
     <div class="right">
@@ -32,7 +32,13 @@
 
 <script>
 export default {
-
+  
+methods:{
+ handle(){
+        let name='loginPhone'
+        this.$emit("passName",name)
+    }
+},
 }
 </script>
 
