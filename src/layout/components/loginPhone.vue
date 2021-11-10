@@ -68,10 +68,11 @@ export default {
 this.$store.dispatch('user/login',this.loginForm)
 .then(()=>{
   //存储登录信息
+   console.log("登录成功");
   this.setUserInfo()
 })
 .catch((error)=>{
-  console.log(error.msg);
+  console.log(error);
 })
   }else{
     console.log('error submit!!')

@@ -10,6 +10,7 @@ import SearchDetail from "../views/search-detail/search-detail.vue";
 import SearchSongs from "../views/search-detail/childsPage/search-songs";
 import SearchMvs from "../views/search-detail/childsPage/search-mvs"
 import SearchPlaylist from "../views/search-detail/childsPage/search-playlist"
+import CollectMusic from "../views/collectMusic"
 /**解决router重复报错 */
 const originalPush = VueRouter.prototype.push
    VueRouter.prototype.push = function push(location) {
@@ -76,6 +77,11 @@ const routes = [
     path: '/new-songs',
     name:'new-songs',
     component: NewSongs
+  },
+  {
+    path: '/collectmusic',
+    name:'collectmusic',
+    component: CollectMusic
   },
 
 

@@ -33,34 +33,25 @@
           size="35px"
           class="avatar"
 @click.native="handle"
+:url=avatarUrl
          />
           <Theme />
-
-
         </div>
-        <el-dialog
-  :visible.sync="isLoginShow"
-  width="50%"
- 
-  >
-  <login />
-</el-dialog>
+    
     </div>
     
 </template>
 <script>
 import Search from '../components/search'
 import Theme from '../components/theme.vue'
-import Login from "../layout/components/login.vue";
 import {
   mapState,
  mapMutations,
-} from "@/store/helper/music"
+} from "@/store/helper/user"
 export default {
   components:{
 Search,
 Theme,
-Login
   },
     name:"LayoutHeader",
     data(){
@@ -70,13 +61,15 @@ Login
         }
     },
     create(){
+     
     },
     methods: {
       handleClose(){
 
       },
       handle(){
-this.setLoginShow(true);
+         console.log(this.avatarUrl);
+this.setLoginStaus(true);
       },
          handleMouseEnter() {
       this.isShow = true;
@@ -90,13 +83,13 @@ go(index){
     },
     ...mapMutations([
      
-     "setLoginShow",
+     "setLoginStaus",
     ]),
     
     },
     computed:{
 ... mapState(
-["isLoginShow"]
+["loginStaus","avatarUrl"]
 )
     }
     

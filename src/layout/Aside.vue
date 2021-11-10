@@ -1,5 +1,10 @@
 <template >
     <div class="aside_wrap">
+      <div class="user">
+        <div class="user_info"> <img src="userInfo.avatarUrl" alt=""><span>{{userInfo.userName}}</span></div>
+        <div class="user_fav"><span>我的喜欢</span></div>
+        <div class="user_music_list" @click="getCollect"><span>我的收藏</span></div>
+      </div>
         <div class="menu" ref="menu">
       <b-menu
         :menu="menuList"
@@ -17,6 +22,12 @@
      </div>
 </template>
 <script>
+import {
+  mapState,
+ mapMutations,
+} from "@/store/helper/user"
+import { getToken } from '@/utils/auth'
+import {  Login } from "../api/login";
 export default {
     name:"LayoutAside",
     data(){
@@ -46,13 +57,38 @@ export default {
           content: "最新音乐",
         },
       ],
+      userInfo:JSON.parse(getToken('userInfo'))
         }
     },
     methods: {
-        
+        getCollect(){
+          this.$router.push('/collectmusic')
+          Login.getUserSubcount().then(res=>{
+            console.log(res);
+          })
+         .catch(error=>{console.log(error);})
+        }
     },
+    computed:{
+      ...mapState(
+        ['userName','avatarUrl']
+
+)
+    }
 }
 </script>
 <style lang="scss" scoped>
-  
+  .aside_wrap{
+    .user_info{
+      display: flex;
+      img{
+        width: 50px;
+        height: 50px;
+        border-radius: 25px;
+      }
+    }
+    .user{
+       background-color:var(--menu-bgcolor)
+    }
+  }
 </style>
